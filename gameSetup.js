@@ -115,19 +115,9 @@ GameMechanics.prototype = Object.create(GameBoard.prototype);
 GameMechanics.prototype.constructor = GameMechanics;
 
 //Sets up the movement for the player object(s)
-//This will be changed to keydown and keyup
-GameMechanics.prototype.playerMove = function (playerObject) {
-    document.addEventListener("keypress", function (event) {
-        if (event.which === 119) { //up 'w' key
-            if (playerObject.locY - 4 >= 0) {
-                playerObject.locY -= 4;
-            }
-        } else if (event.which === 115) { //down 's' key
-            if (playerObject.locY + 4 <= window.innerHeight - 64) {
-                playerObject.locY += 4;
-            }
-        }
-    });
+GameMechanics.prototype.playerMove = function (eventCallDown, eventCallUp) {
+    document.addEventListener("keydown", eventCallDown);
+    document.addEventListener("keyup", eventCallUp);
 };
 
 //Detects collision between objects
